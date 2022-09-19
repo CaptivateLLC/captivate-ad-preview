@@ -19,7 +19,7 @@ function Header() {
   return (
     <div style={headerPosition} className="Header">
       <img style={logoStyle} src={logo} />
-      <div style={headerTextStyle}>Ad Preview</div>
+      <div style={headerTextStyle}>Ad Preview 395.1</div>
     </div>
   );
 }
