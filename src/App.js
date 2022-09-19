@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useMemo, useRef } from "react";
+import styles from "./App.scss";
+import Header from "./components/Header";
+import Dropzone from "./components/Dropzone";
+import AssetDisplay from "./components/AssetDisplay";
+import DroppedFileAttributes from "./components/DroppedFileAttributes";
+
+const displayContainer = {
+  width: "100%",
+  display: "flex",
+  flexWrap: "wrap",
+};
 
 function App() {
+  const [droppedFile, setDroppedFile] = useState({});
+
+  const handleDropzoneChanges = (name, value) => {
+    console.log("dropped from parent");
+    setDroppedFile((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header></Header>
+      <DroppedFileAttributes droppedFile={droppedFile}></DroppedFileAttributes>
+      <Dropzone handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
+      <div style={displayContainer}>
+        <AssetDisplay label="Large Format Display" droppedFile={droppedFile} width={768}></AssetDisplay>
+        <AssetDisplay label="Elevator" droppedFile={droppedFile} width={480}></AssetDisplay>
+      </div>
     </div>
   );
 }

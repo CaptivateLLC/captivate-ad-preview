@@ -1,0 +1,36 @@
+// for all:
+// colors
+$light: rgb(255, 255, 255);
+$dark: rgb(0, 0, 0);
+
+*,
+*::before,
+*::after {
+  font-family: "Avenir-Roman";
+  font-size: 1rem;
+  color: $dark;
+}
+@font-face {
+  font-family: "Avenir-Roman";
+  src: local("Avenir-Roman"), url("./assets/fonts/Avenir-Roman-12.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: local("Avenir-Heavy"), url("./assets/fonts/Avenir-Heavy-05.ttf") format("truetype");
+}
+
+// stacking
+$backgroundImageIndex: 100;
+$contentIndex: 150;
+
+// spacing
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+// size
+$contentAreaWidth: 500px;
+$borderRadius: 12px;
+$transitionFadeTime: 0.3s;
+// header height
+$headerHeight: 73px;
