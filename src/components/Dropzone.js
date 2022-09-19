@@ -39,7 +39,40 @@ function Dropzone({ handleDropzoneChanges }) {
       const nameArray = newFile.name.split(".");
       const ext = nameArray[1];
 
-      handleDropzoneChanges("payload", newFile);
+      if (ext !== "mp4") {
+        const i = new Image();
+        i.onload = () => {
+          let reader = new FileReader();
+          reader.readAsDataURL(newFile);
+          reader.onload = () => {
+            const ratio = i.width / i.height;
+            const fixedRatio = ratio.toFixed(2);
+            if (fixedRatio === 7.78) {
+              console.log("correct aspect ratio");
+              handleDropzoneChanges("payload", newFile);
+            } else {
+              console.log("incorrect aspect ratio");
+            }
+          };
+        };
+
+        i.src = newFile.preview;
+      } else {
+        // need to interrogate video for its secrets
+        const video = document.createElement("video");
+        video.addEventListener("canplay", (event) => {
+          //console.log("width = ", video.width);
+          const ratio = video.videoWidth / video.videoHeight;
+          const fixedRatio = ratio.toFixed(2);
+          if (fixedRatio === 7.78) {
+            console.log("correct aspect ratio");
+            handleDropzoneChanges("payload", newFile);
+          } else {
+            console.log("incorrect aspect ratio ", fixedRatio);
+          }
+        });
+        video.src = URL.createObjectURL(newFile);
+      }
     },
   });
 
