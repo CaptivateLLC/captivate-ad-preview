@@ -18,7 +18,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors }) {
   const [files, setFiles] = useState([]);
   const { acceptedFiles, getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     maxFiles: 1,
-    noClick: false,
+    noClick: true,
     multiple: false,
     accept: {
       "image/png": [".png"],

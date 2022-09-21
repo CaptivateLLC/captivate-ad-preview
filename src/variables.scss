@@ -52,8 +52,8 @@ $headerHeight: 73px;
 
 @mixin breakpoint($point) {
   @if $point == md {
-    // 768
-    @media (max-width: 48em) {
+    // 1696px width break point
+    @media (min-width: 106em) {
       @content;
     }
   }

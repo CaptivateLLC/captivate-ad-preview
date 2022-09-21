@@ -51,11 +51,11 @@ function AssetDisplay({ droppedFile, width, label }) {
     }
   }, [droppedFile.payload]);
   return (
-    <section className={`${styles.relative} ${styles.displayNone}`}>
+    <div className={`${styles.relative} ${styles.bottomMargin}`}>
       {/* `${this.state.className} ${this.props.content.divClassName}}` */}
       <div className={styles.labelText}>{label}</div>
       <div ref={ref} style={dropzoneAssetParent} className={styles.dropContainer}></div>
-    </section>
+    </div>
   );
 }
 export default AssetDisplay;
