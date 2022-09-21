@@ -14,7 +14,7 @@ const rejectStyle = {
   boxShadow: "0px 0px 8px 1px #ff1744",
 };
 
-function Dropzone({ handleDropzoneChanges }) {
+function Dropzone({ handleDropzoneChanges, handleDropzoneErrors }) {
   const [files, setFiles] = useState([]);
   const { acceptedFiles, getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     maxFiles: 1,
@@ -47,10 +47,12 @@ function Dropzone({ handleDropzoneChanges }) {
           reader.onload = () => {
             const ratio = i.width / i.height;
             const fixedRatio = ratio.toFixed(2);
-            if (fixedRatio === 7.78) {
+
+            if (fixedRatio === "1.78") {
               console.log("correct aspect ratio");
               handleDropzoneChanges("payload", newFile);
             } else {
+              handleDropzoneErrors("error");
               console.log("incorrect aspect ratio");
             }
           };
@@ -64,11 +66,13 @@ function Dropzone({ handleDropzoneChanges }) {
           //console.log("width = ", video.width);
           const ratio = video.videoWidth / video.videoHeight;
           const fixedRatio = ratio.toFixed(2);
-          if (fixedRatio === 7.78) {
+
+          if (fixedRatio === "1.78") {
             console.log("correct aspect ratio");
             handleDropzoneChanges("payload", newFile);
           } else {
             console.log("incorrect aspect ratio ", fixedRatio);
+            handleDropzoneErrors("error");
           }
         });
         video.src = URL.createObjectURL(newFile);
@@ -87,7 +91,6 @@ function Dropzone({ handleDropzoneChanges }) {
 
   return (
     <section className={styles.container}>
-      <p className={styles.absoluteText}>Drop files here or click to select</p>
       <div {...getRootProps({ className: `dropzone ${styles.dropzoneContainer}` })}>
         <input {...getInputProps()} />
       </div>

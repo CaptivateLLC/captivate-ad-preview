@@ -1,1 +1,18 @@
 @import "../variables.scss";
+
+.headerTextStyle {
+  font-size: 2rem;
+  margin-top: 100px;
+  color: $light;
+  font-family: "Avenir-DemiBold";
+}
+.logoStyle {
+  width: 300px;
+  height: auto;
+}
+.subTitleText {
+  font-family: "Avenir-Medium";
+  font-size: 1.375rem;
+  color: $light;
+  margin-top: 8px;
+}

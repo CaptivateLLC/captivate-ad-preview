@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-// import styles from "./AssetDisplay.module.scss";
+import styles from "./AssetDisplay.module.scss";
+import bgImage from "../assets/dropzoneBGImage.png";
 
 function AssetDisplay({ droppedFile, width, label }) {
   const height = (9 * width) / 16;
   const ref = useRef(null);
 
   const container = {
-    marginRight: "20px",
-    marginTop: "30px",
+    position: "relative",
   };
 
   const dropzoneAssetParent = {
@@ -16,9 +16,6 @@ function AssetDisplay({ droppedFile, width, label }) {
     overflow: "hidden",
     position: "relative",
     border: "1px black solid",
-  };
-  const labelText = {
-    fontSize: "30px",
   };
 
   useEffect(() => {
@@ -54,9 +51,10 @@ function AssetDisplay({ droppedFile, width, label }) {
     }
   }, [droppedFile.payload]);
   return (
-    <section style={container} className="container">
-      <div style={labelText}>{label}</div>
-      <div ref={ref} style={dropzoneAssetParent}></div>
+    <section className={`${styles.relative} ${styles.displayNone}`}>
+      {/* `${this.state.className} ${this.props.content.divClassName}}` */}
+      <div className={styles.labelText}>{label}</div>
+      <div ref={ref} style={dropzoneAssetParent} className={styles.dropContainer}></div>
     </section>
   );
 }

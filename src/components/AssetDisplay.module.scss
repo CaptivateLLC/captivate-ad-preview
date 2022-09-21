@@ -1,0 +1,26 @@
+@import "../variables.scss";
+
+.dropContainer {
+  background-image: $dropZoneBackground;
+  //   background-image: url(../assets/dropzoneBGImage.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  z-index: 100;
+}
+
+.labelText {
+  font-size: 30px;
+  position: absolute;
+  top: -42px;
+  color: $light;
+  font-family: "Avenir-DemiBold";
+  font-size: 1.625rem;
+}
+.relative {
+  position: relative;
+}
+
+.displayNone {
+  //   display: none;
+}

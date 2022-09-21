@@ -1,0 +1,24 @@
+@import "../variables.scss";
+
+.footerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.innerTextContainer {
+  text-align: left;
+}
+
+.text {
+  color: $light;
+  font-size: 1.375rem;
+  font-family: "Avenir-Medium";
+  text-align: left;
+}
+
+.blueCheck {
+  margin-right: 8px;
+}

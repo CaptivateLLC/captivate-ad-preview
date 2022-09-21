@@ -2,24 +2,12 @@ import react from "react";
 import styles from "./Header.module.scss";
 import logo from "../assets/logo.svg";
 
-const headerPosition = {
-  textAlign: "center",
-};
-const headerTextStyle = {
-  fontSize: "40px",
-  marginBottom: "20px",
-  opacity: ".6",
-};
-const logoStyle = {
-  width: "300px",
-  height: "auto",
-};
-
 function Header() {
   return (
-    <div style={headerPosition} className="Header">
-      <img style={logoStyle} src={logo} />
-      <div style={headerTextStyle}>Ad Preview 395.1</div>
+    <div className={styles.relativeCenterBody}>
+      <img className={styles.logoStyle} src={logo} />
+      <div className={styles.headerTextStyle}>Standard Ad Preview v395.5</div>
+      <div className={styles.subTitleText}>Drag and drop 16:9 creative or click here to browse</div>
     </div>
   );
 }
