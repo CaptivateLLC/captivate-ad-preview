@@ -11,6 +11,14 @@
 .lobbyAssetDisplay {
   display: none;
 }
+.separator {
+  display: none;
+  position: relative;
+  top: -23px;
+  @include breakpoint(md) {
+    display: block;
+  }
+}
 
 .displayContainer {
   display: flex;

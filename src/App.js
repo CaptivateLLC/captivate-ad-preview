@@ -8,7 +8,7 @@
 // git remote set-url origin git@github.com:CaptivateLLC/captivate-ad-preview.git
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import styles from "./App.modules.scss";
+import styles from "./App.module.scss";
 import Header from "./components/Header";
 import Dropzone from "./components/Dropzone";
 import AssetDisplay from "./components/AssetDisplay";
@@ -16,6 +16,7 @@ import DroppedFileAttributes from "./components/DroppedFileAttributes";
 import BackgroundImages from "./components/BackgroundImages";
 import ErrorMessage from "./components/ErrorMessage";
 import Footer from "./components/Footer";
+import separator from "./assets/separator.svg";
 
 const displayNone = {
   display: "none",
@@ -42,16 +43,15 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Dropzone clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
       <BackgroundImages></BackgroundImages>
       <Header></Header>
       <ErrorMessage errorMessageArray={errorMessageArray}></ErrorMessage>
 
-      <DroppedFileAttributes droppedFile={droppedFile}></DroppedFileAttributes>
-
-      <div className="displayContainer">
+      <div className={styles.displayContainer}>
         <AssetDisplay label="Elevator (480x270)" droppedFile={droppedFile} width={480}></AssetDisplay>
+        <img className={styles.separator} src={separator}></img>
         <AssetDisplay label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
       </div>
       <Footer></Footer>
