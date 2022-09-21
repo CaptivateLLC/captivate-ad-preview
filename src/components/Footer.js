@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.scss";
-import blueCheck from "../assets/blueCheck.png";
+import blueCheck from "../assets/blueCheck.svg";
 
 const Footer = () => {
   return (

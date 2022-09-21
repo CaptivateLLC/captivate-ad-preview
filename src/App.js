@@ -23,8 +23,7 @@ const displayNone = {
 
 function App() {
   const [droppedFile, setDroppedFile] = useState({});
-  const [errorMessage, setErrorMessage] = useState("this is the error message");
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorMessageArray, setErrorMessageArray] = useState([]);
 
   const handleDropzoneChanges = (name, value) => {
     console.log("dropped from parent");
@@ -33,16 +32,21 @@ function App() {
       [name]: value,
     }));
   };
-  const handleDropzoneErrors = () => {
-    console.log("error from app");
+  const handleDropzoneErrors = (text) => {
+    console.log("running handle");
+    setErrorMessageArray((oldArray) => [...oldArray, text]);
+  };
+  const clearDropzoneErrors = () => {
+    console.log("running clear");
+    setErrorMessageArray([]);
   };
 
   return (
     <div className="App">
-      <Dropzone handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
+      <Dropzone clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
       <BackgroundImages></BackgroundImages>
       <Header></Header>
-      <ErrorMessage errorMessage={errorMessage} showErrorMessage={showErrorMessage}></ErrorMessage>
+      <ErrorMessage errorMessageArray={errorMessageArray}></ErrorMessage>
 
       <DroppedFileAttributes droppedFile={droppedFile}></DroppedFileAttributes>
 

@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "./ErrorMessage.module.scss";
 
-const ErrorMessage = ({ errorMessage, showErrorMessage }) => {
-  let displayValue = { showErrorMessage } ? "show it" : "don't show it";
+const ErrorMessage = ({ errorMessageArray }) => {
   return (
     <div className="ErrorMessage">
-      <div className={`${styles.errorText} ${styles.relativeCenterBody}`}>{displayValue}</div>
+      <div className={`${styles.errorText} ${styles.relativeCenterBody}`}>{errorMessageArray}</div>
     </div>
   );
 };

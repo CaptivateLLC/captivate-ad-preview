@@ -14,8 +14,9 @@ const rejectStyle = {
   boxShadow: "0px 0px 8px 1px #ff1744",
 };
 
-function Dropzone({ handleDropzoneChanges, handleDropzoneErrors }) {
+function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneErrors }) {
   const [files, setFiles] = useState([]);
+
   const { acceptedFiles, getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     maxFiles: 1,
     noClick: true,
@@ -28,6 +29,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors }) {
     },
     onDropAccepted: (acceptedFiles) => {
       console.log("accepted");
+      clearDropzoneErrors();
       setFiles(
         acceptedFiles.map((myfile) =>
           Object.assign(myfile, {
@@ -36,6 +38,9 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors }) {
         )
       );
       const newFile = acceptedFiles[0];
+      if (newFile.size > 20000000) {
+        handleDropzoneErrors("file size error");
+      }
       const nameArray = newFile.name.split(".");
       const ext = nameArray[1];
 
@@ -52,8 +57,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors }) {
               console.log("correct aspect ratio");
               handleDropzoneChanges("payload", newFile);
             } else {
-              handleDropzoneErrors("error");
-              console.log("incorrect aspect ratio");
+              handleDropzoneErrors("file dimension error");
             }
           };
         };
@@ -71,8 +75,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors }) {
             console.log("correct aspect ratio");
             handleDropzoneChanges("payload", newFile);
           } else {
-            console.log("incorrect aspect ratio ", fixedRatio);
-            handleDropzoneErrors("error");
+            handleDropzoneErrors("file dimension error");
           }
         });
         video.src = URL.createObjectURL(newFile);
