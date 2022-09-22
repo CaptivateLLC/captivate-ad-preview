@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import styles from "./AssetDisplay.module.scss";
 import bgImage from "../assets/dropzoneBGImage.png";
+import Dropzone from "../components/Dropzone";
 
-function AssetDisplay({ droppedFile, width, label }) {
+function AssetDisplay({ droppedFile, width, label, clearDropzoneErrors, handleDropzoneErrors, handleDropzoneChanges }) {
   const height = (9 * width) / 16;
   const ref = useRef(null);
 
@@ -52,6 +53,7 @@ function AssetDisplay({ droppedFile, width, label }) {
   }, [droppedFile.payload]);
   return (
     <div className={`${styles.relative} ${styles.bottomMargin}`}>
+      <Dropzone noClick={false} clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
       {/* `${this.state.className} ${this.props.content.divClassName}}` */}
       <div className={styles.labelText}>{label}</div>
       <div ref={ref} style={dropzoneAssetParent} className={styles.dropContainer}></div>

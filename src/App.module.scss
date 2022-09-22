@@ -21,6 +21,10 @@
 }
 
 .displayContainer {
+  z-index: 1000;
+
+  position: relative;
+  pointer-events: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

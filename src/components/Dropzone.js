@@ -1,6 +1,13 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef, createRef } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./Dropzone.module.scss";
+
+const myStyle = {
+  width: "300px",
+  height: "300px",
+  position: "absolute",
+  top: "0",
+};
 
 const baseStyle = {
   outline: "white dashed 2px",
@@ -14,12 +21,12 @@ const rejectStyle = {
   boxShadow: "0px 0px 8px 1px #ff1744",
 };
 
-function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneErrors }) {
+function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneErrors, noClick }) {
   const [files, setFiles] = useState([]);
 
   const { acceptedFiles, getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     maxFiles: 1,
-    noClick: true,
+    noClick: noClick,
     multiple: false,
     accept: {
       "image/png": [".png"],

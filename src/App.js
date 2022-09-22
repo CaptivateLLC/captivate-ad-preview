@@ -44,15 +44,15 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <Dropzone clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
+      <Dropzone noClick={true} clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
       <BackgroundImages></BackgroundImages>
       <Header></Header>
       <ErrorMessage errorMessageArray={errorMessageArray}></ErrorMessage>
 
       <div className={styles.displayContainer}>
-        <AssetDisplay label="Elevator (480x270)" droppedFile={droppedFile} width={480}></AssetDisplay>
+        <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Elevator (480x270)" droppedFile={droppedFile} width={480}></AssetDisplay>
         <img className={styles.separator} src={separator}></img>
-        <AssetDisplay label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
+        <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
       </div>
       <Footer></Footer>
     </div>
