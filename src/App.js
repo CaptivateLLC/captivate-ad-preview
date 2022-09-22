@@ -25,9 +25,14 @@ const displayNone = {
 function App() {
   const [droppedFile, setDroppedFile] = useState({});
   const [errorMessageArray, setErrorMessageArray] = useState(["Drag and drop 16:9 creative or click a preview window to browse"]);
+  const [errorTextAnimationRun, setErrorTextAnimationRun] = useState(false);
 
   const handleDropzoneChanges = (name, value) => {
-    console.log("dropped from parent");
+    setErrorTextAnimationRun(true);
+    setTimeout(() => {
+      setErrorTextAnimationRun(false);
+    }, "5000");
+
     setDroppedFile((prevState) => ({
       ...prevState,
       [name]: value,
@@ -54,7 +59,7 @@ function App() {
         <img className={styles.separator} src={separator}></img>
         <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
       </div>
-      <ErrorMessage errorMessageArray={errorMessageArray}></ErrorMessage>
+      <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageArray={errorMessageArray}></ErrorMessage>
     </div>
   );
 }

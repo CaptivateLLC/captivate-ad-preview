@@ -2,8 +2,25 @@
 
 .errorText {
   font-size: 1.375rem;
-  color: $warning;
+  color: $light;
   margin-top: 4px;
   font-family: "Avenir-DemiBold";
   height: 1em;
+}
+
+.animateIt {
+  color: $warning;
+  animation-name: fadeToWhite;
+  animation-duration: 0.5s;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeToWhite {
+  from {
+    color: $warning;
+  }
+  to {
+    color: $light;
+  }
 }

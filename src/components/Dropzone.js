@@ -56,7 +56,11 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
       const newFile = acceptedFiles[0];
       if (newFile.size > maxFileSize) {
         console.log("file size test error");
-        handleDropzoneErrors("file size should not exceed 20mb, currently: 42mb");
+        let divisor = newFile.size > 1000000000 ? 1000000000 : 1000000;
+        let suffix = newFile.size > 1000000000 ? "gb" : "mb";
+
+        const fixedSize = Math.round(newFile.size / divisor);
+        handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}`);
       }
       const nameArray = newFile.name.split(".");
       const ext = nameArray[1];
