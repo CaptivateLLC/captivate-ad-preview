@@ -24,7 +24,7 @@ const displayNone = {
 
 function App() {
   const [droppedFile, setDroppedFile] = useState({});
-  const [errorMessageArray, setErrorMessageArray] = useState([]);
+  const [errorMessageArray, setErrorMessageArray] = useState(["Drag and drop 16:9 creative or click a preview window to browse"]);
 
   const handleDropzoneChanges = (name, value) => {
     console.log("dropped from parent");
@@ -48,14 +48,13 @@ function App() {
       <Dropzone noClick={true} clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
       <BackgroundImages></BackgroundImages>
       <Header></Header>
-      <ErrorMessage errorMessageArray={errorMessageArray}></ErrorMessage>
 
       <div className={styles.displayContainer}>
         <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Elevator (480x270)" droppedFile={droppedFile} width={480}></AssetDisplay>
         <img className={styles.separator} src={separator}></img>
         <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
       </div>
-      <Footer></Footer>
+      <ErrorMessage errorMessageArray={errorMessageArray}></ErrorMessage>
     </div>
   );
 }

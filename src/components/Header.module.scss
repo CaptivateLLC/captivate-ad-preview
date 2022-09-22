@@ -16,3 +16,25 @@
   color: $light;
   margin-top: 8px;
 }
+
+.innerTextContainer {
+  text-align: left;
+  line-height: 2.5em;
+}
+
+.text {
+  color: $light;
+  font-size: 1.375rem;
+  font-family: "Avenir-Medium";
+  text-align: left;
+}
+
+.blueCheck {
+  margin-right: 8px;
+}
+.headerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
