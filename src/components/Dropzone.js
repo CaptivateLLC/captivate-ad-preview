@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef, createRef } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./Dropzone.module.scss";
+import { getInfo } from "react-mediainfo";
 
 const maxFileSize = 20000000;
 
@@ -54,13 +55,22 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
         )
       );
       const newFile = acceptedFiles[0];
+
+      const newInfo = getInfo(newFile).then((result) => {
+        const ac = result.media.track[0].AudioCount;
+        console.log("ac = ", ac);
+        if (ac === "1") {
+          handleDropzoneErrors("File contains audio channel.");
+        }
+      });
+
       if (newFile.size > maxFileSize) {
         console.log("file size test error");
         let divisor = newFile.size > 1000000000 ? 1000000000 : 1000000;
         let suffix = newFile.size > 1000000000 ? "gb" : "mb";
 
         const fixedSize = Math.round(newFile.size / divisor);
-        handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}`);
+        handleDropzoneErrors(`File size should not exceed 20mb, currently: ${fixedSize}${suffix}.`);
       }
       const nameArray = newFile.name.split(".");
       const ext = nameArray[1];
