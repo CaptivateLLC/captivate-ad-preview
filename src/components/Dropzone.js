@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo, useRef, createRef } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./Dropzone.module.scss";
 
+const maxFileSize = 20000000;
+
 const myStyle = {
   width: "300px",
   height: "300px",
@@ -34,6 +36,11 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
       "image/jpeg": [".jpeg"],
       "video/mp4": [".mp4"],
     },
+    onDropRejected: (rejectedFiles) => {
+      console.log("rejected");
+      clearDropzoneErrors();
+      handleDropzoneErrors("Only JPG, PNG, MP4 files accepted.");
+    },
     onDropAccepted: (acceptedFiles) => {
       console.log("accepted");
       clearDropzoneErrors();
@@ -45,8 +52,8 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
         )
       );
       const newFile = acceptedFiles[0];
-      if (newFile.size > 20000000) {
-        handleDropzoneErrors("file size error");
+      if (newFile.size > maxFileSize) {
+        handleDropzoneErrors("File size warning.  Less than 20MB recommended.");
       }
       const nameArray = newFile.name.split(".");
       const ext = nameArray[1];
@@ -64,7 +71,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
               console.log("correct aspect ratio");
               handleDropzoneChanges("payload", newFile);
             } else {
-              handleDropzoneErrors("file dimension error");
+              handleDropzoneErrors("File dimension error.  Not 16x9.");
             }
           };
         };
@@ -82,7 +89,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
             console.log("correct aspect ratio");
             handleDropzoneChanges("payload", newFile);
           } else {
-            handleDropzoneErrors("file dimension error");
+            handleDropzoneErrors("File dimension error. Not 16x9.");
           }
         });
         video.src = URL.createObjectURL(newFile);

@@ -35,7 +35,8 @@ function App() {
   };
   const handleDropzoneErrors = (text) => {
     console.log("running handle");
-    setErrorMessageArray((oldArray) => [...oldArray, text]);
+
+    setErrorMessageArray((oldArray) => [...oldArray, text, " "]);
   };
   const clearDropzoneErrors = () => {
     console.log("running clear");

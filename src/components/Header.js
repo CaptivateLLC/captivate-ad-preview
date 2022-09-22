@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className={styles.relativeCenterBody}>
       <img className={styles.logoStyle} src={logo} />
-      <div className={styles.headerTextStyle}>Standard Ad Preview v396.0</div>
+      <div className={styles.headerTextStyle}>Standard Ad Preview v396.1</div>
       <div className={styles.subTitleText}>Drag and drop 16:9 creative or click here to browse</div>
     </div>
   );
