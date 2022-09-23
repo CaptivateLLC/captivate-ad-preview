@@ -47,10 +47,10 @@ function App() {
     setErrorMessageArray([]);
   };
 
-  const isMounted = useRef(0);
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current === 2) {
+    if (isMounted.current) {
       let newString = "";
       for (var i = 0; i < errorMessageArray.length; i++) {
         let val = errorMessageArray[i];
@@ -61,11 +61,8 @@ function App() {
         }
       }
       setErrorMessageString(newString);
-    } else if (isMounted.current === 0) {
-      isMounted.current = 1;
-    } else if (isMounted.current === 1) {
-      setErrorMessageString("Drag and drop 16:9 creative anywhere or click a preview window to browse");
-      isMounted.current = 2;
+    } else if (isMounted.current === false) {
+      isMounted.current = true;
     }
   }, [errorMessageArray]);
 
@@ -80,6 +77,7 @@ function App() {
         <img className={styles.separator} src={separator}></img>
         <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
       </div>
+      <Footer></Footer>
       <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageString={errorMessageString}></ErrorMessage>
     </div>
   );

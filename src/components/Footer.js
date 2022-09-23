@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Footer.module.scss";
 
-const Footer = () => {
-  return <div className={`${styles.relativeCenterBody} ${styles.footerContainer}`}></div>;
-};
+function Footer() {
+  return <div className={styles.text}>Drag and drop 16:9 creative anywhere or click a preview window to browse</div>;
+}
 
 export default Footer;
