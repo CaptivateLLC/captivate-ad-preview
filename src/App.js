@@ -24,7 +24,8 @@ const displayNone = {
 
 function App() {
   const [droppedFile, setDroppedFile] = useState({});
-  const [errorMessageArray, setErrorMessageArray] = useState(["Drag and drop 16:9 creative or click a preview window to browse"]);
+  const [errorMessageArray, setErrorMessageArray] = useState([]);
+  const [errorMessageString, setErrorMessageString] = useState();
   const [errorTextAnimationRun, setErrorTextAnimationRun] = useState(false);
 
   const handleDropzoneChanges = (name, value) => {
@@ -39,14 +40,34 @@ function App() {
     }));
   };
   const handleDropzoneErrors = (text) => {
-    console.log("running handle");
-
-    setErrorMessageArray((oldArray) => [...oldArray, text, " "]);
+    setErrorMessageArray((oldArray) => [...oldArray, text]);
   };
+
   const clearDropzoneErrors = () => {
-    console.log("running clear");
     setErrorMessageArray([]);
   };
+
+  const isMounted = useRef(0);
+
+  useEffect(() => {
+    if (isMounted.current === 2) {
+      let newString = "";
+      for (var i = 0; i < errorMessageArray.length; i++) {
+        let val = errorMessageArray[i];
+        if (i === 0) {
+          newString = val;
+        } else {
+          newString += ` |  ${val}`;
+        }
+      }
+      setErrorMessageString(newString);
+    } else if (isMounted.current === 0) {
+      isMounted.current = 1;
+    } else if (isMounted.current === 1) {
+      setErrorMessageString("Drag and drop 16:9 creative anywhere or click a preview window to browse");
+      isMounted.current = 2;
+    }
+  }, [errorMessageArray]);
 
   return (
     <div className={styles.App}>
@@ -59,7 +80,7 @@ function App() {
         <img className={styles.separator} src={separator}></img>
         <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
       </div>
-      <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageArray={errorMessageArray}></ErrorMessage>
+      <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageString={errorMessageString}></ErrorMessage>
     </div>
   );
 }

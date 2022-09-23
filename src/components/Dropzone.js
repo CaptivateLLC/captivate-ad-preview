@@ -60,7 +60,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
         const ac = result.media.track[0].AudioCount;
         console.log("ac = ", ac);
         if (ac === "1") {
-          handleDropzoneErrors("File contains audio channel.");
+          handleDropzoneErrors("file should not include audio channel");
         }
       });
 
@@ -70,7 +70,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
         let suffix = newFile.size > 1000000000 ? "gb" : "mb";
 
         const fixedSize = Math.round(newFile.size / divisor);
-        handleDropzoneErrors(`File size should not exceed 20mb, currently: ${fixedSize}${suffix}.`);
+        handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}.`);
       }
       const nameArray = newFile.name.split(".");
       const ext = nameArray[1];
@@ -88,7 +88,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
               console.log("correct aspect ratio");
               handleDropzoneChanges("payload", newFile);
             } else {
-              handleDropzoneErrors("16:9 ratio required, file not loaded.");
+              handleDropzoneErrors("16:9 ratio required");
             }
           };
         };
@@ -105,7 +105,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
           if (fixedRatio === "1.78") {
             handleDropzoneChanges("payload", newFile);
           } else {
-            handleDropzoneErrors("16:9 ratio required, file not loaded.");
+            handleDropzoneErrors("16:9 ratio required.");
           }
         });
         video.src = URL.createObjectURL(newFile);

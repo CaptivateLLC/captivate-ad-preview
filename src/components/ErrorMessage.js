@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./ErrorMessage.module.scss";
 
-const ErrorMessage = ({ errorMessageArray, errorTextAnimationRun }) => {
+const ErrorMessage = ({ errorMessageString, errorTextAnimationRun }) => {
   return (
     <div className="ErrorMessage">
-      <div className={`${styles.errorText} ${styles.relativeCenterBody} ${errorTextAnimationRun ? styles.animateIt : ""}`}>{errorMessageArray}</div>
+      <div className={`${styles.errorText} ${styles.relativeCenterBody} ${errorTextAnimationRun ? styles.animateIt : ""}`}>{errorMessageString}</div>
     </div>
   );
 };
