@@ -11,10 +11,10 @@ function Header() {
       <div className={`${styles.relativeCenterBody} ${styles.headerContainer}`}>
         <div className={styles.innerTextContainer}>
           <div className={styles.text}>
-            <img src={blueCheck} className={styles.blueCheck}></img>For best results, please stand a few feet away from your screen while assessing the on-screen experience.
+            <img src={blueCheck} className={styles.blueCheck}></img>For best results, stand a few feet away from your screen
           </div>
           <div className={styles.text}>
-            <img src={blueCheck} className={styles.blueCheck}></img>Ensure that all on-screen elements such as text size and QR codes are legible and funcional in both formats.
+            <img src={blueCheck} className={styles.blueCheck}></img>All elements, especially text and QR codes, should be legible in both formats
           </div>
         </div>
       </div>
