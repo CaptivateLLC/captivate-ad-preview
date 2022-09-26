@@ -63,7 +63,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
         let suffix = newFile.size > 1000000000 ? "gb" : "mb";
 
         const fixedSize = Math.round(newFile.size / divisor);
-        handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}.`);
+        handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}`);
       }
       const nameArray = newFile.name.split(".");
       const ext = nameArray[1];

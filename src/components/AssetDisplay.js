@@ -19,44 +19,34 @@ function AssetDisplay({ droppedFile, width, label, clearDropzoneErrors, handleDr
     border: "1px black solid",
   };
 
-  useEffect(() => {
-    if (Object.keys(droppedFile).length > 0 && droppedFile.payload !== null) {
-      // if this is a video, create a video tag
-      if (droppedFile.payload.type.includes("video")) {
-        const el = ref.current;
-        const elemV = document.createElement("video");
-        elemV.style = "position: absolute; width: 100%; height: 100%; left: 0px; object-fit: contain";
+  const videoStyle = {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    left: "0px",
+    objectFit: "contain",
+  };
+  const imageStyle = {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    left: "0px",
+    objectFit: "contain",
+  };
 
-        elemV.autoplay = true;
-        elemV.loop = true;
-        elemV.src = URL.createObjectURL(droppedFile.payload);
-        const options = { childList: true };
-        while (el.firstChild) {
-          el.removeChild(el.lastChild);
-        }
-        setTimeout(() => {
-          el.appendChild(elemV);
-        }, 100);
-      } else {
-        const elemI = document.createElement("img");
-        elemI.style = "position: absolute; width: 100%; height: 100%; left: 0px; object-fit: contain";
-        elemI.setAttribute("src", URL.createObjectURL(droppedFile.payload));
-        const el = ref.current;
-        while (el.firstChild) {
-          el.removeChild(el.lastChild);
-        }
-        setTimeout(() => {
-          el.appendChild(elemI);
-        }, 100);
-      }
-    }
-  }, [droppedFile.payload]);
   return (
     <div className={`${styles.relative} ${styles.bottomMargin}`}>
       <Dropzone noClick={false} clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
-      {/* `${this.state.className} ${this.props.content.divClassName}}` */}
       <div className={styles.labelText}>{label}</div>
-      <div ref={ref} style={dropzoneAssetParent} className={styles.dropContainer}></div>
+      <div ref={ref} style={dropzoneAssetParent} className={styles.dropContainer}>
+        {droppedFile?.payload?.type?.includes("video") ? (
+          <video autoPlay loop style={videoStyle}>
+            <source src={URL.createObjectURL(droppedFile.payload)} type="video/mp4" />
+          </video>
+        ) : droppedFile?.payload?.type?.includes("image") ? (
+          <img src={URL.createObjectURL(droppedFile.payload)} style={imageStyle}></img>
+        ) : null}
+      </div>
     </div>
   );
 }

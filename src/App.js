@@ -18,7 +18,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import Footer from "./components/Footer";
 import separator from "./assets/separator.svg";
 
-import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
+// import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 function App() {
   const [droppedFile, setDroppedFile] = useState({});
@@ -26,9 +26,9 @@ function App() {
   const [errorMessageString, setErrorMessageString] = useState();
   const [errorTextAnimationRun, setErrorTextAnimationRun] = useState(false);
 
-  const ffmpeg = createFFmpeg({
-    log: true,
-  });
+  // const ffmpeg = createFFmpeg({
+  //   log: true,
+  // });
   // const load = async () => {
   //   await ffmpeg.load();
   // };
