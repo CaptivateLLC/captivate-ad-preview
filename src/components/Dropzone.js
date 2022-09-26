@@ -5,13 +5,6 @@ import { getInfo } from "react-mediainfo";
 
 const maxFileSize = 20000000;
 
-const myStyle = {
-  width: "300px",
-  height: "300px",
-  position: "absolute",
-  top: "0",
-};
-
 const baseStyle = {
   outline: "white dashed 2px",
 };
@@ -105,7 +98,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
           if (fixedRatio === "1.78") {
             handleDropzoneChanges("payload", newFile);
           } else {
-            handleDropzoneErrors("16:9 ratio required.");
+            handleDropzoneErrors("16:9 ratio required");
           }
         });
         video.src = URL.createObjectURL(newFile);

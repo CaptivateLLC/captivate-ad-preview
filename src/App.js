@@ -18,9 +18,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import Footer from "./components/Footer";
 import separator from "./assets/separator.svg";
 
-const displayNone = {
-  display: "none",
-};
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 function App() {
   const [droppedFile, setDroppedFile] = useState({});
@@ -28,18 +26,27 @@ function App() {
   const [errorMessageString, setErrorMessageString] = useState();
   const [errorTextAnimationRun, setErrorTextAnimationRun] = useState(false);
 
-  const handleDropzoneChanges = (name, value) => {
-    setErrorTextAnimationRun(true);
-    setTimeout(() => {
-      setErrorTextAnimationRun(false);
-    }, "5000");
+  const ffmpeg = createFFmpeg({
+    log: true,
+  });
+  // const load = async () => {
+  //   await ffmpeg.load();
+  // };
+  // useEffect(() => {
+  //   load();
+  // });
 
+  const handleDropzoneChanges = (name, value) => {
     setDroppedFile((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
   const handleDropzoneErrors = (text) => {
+    setErrorTextAnimationRun(true);
+    setTimeout(() => {
+      setErrorTextAnimationRun(false);
+    }, "5000");
     setErrorMessageArray((oldArray) => [...oldArray, text]);
   };
 
@@ -66,6 +73,15 @@ function App() {
     }
   }, [errorMessageArray]);
 
+  const removeAudioChannel = async (e) => {
+    console.log("click");
+    await ffmpeg.load();
+    // ffmpeg.FS("writeFile", "noAudio.mp4", await fetchFile(droppedFile.payload));
+    // await ffmpeg.run("-framerate", "1/10", "-i", "noAudio.mp4", "-c:v", "libx264", "-t", "10", "-pix_fmt", "yuv420p", "-vf", "scale=1920:1080", "test.mp4");
+    // const data = ffmpeg.FS("readFile", "test.mp4");
+    //setVideoSrc(URL.createObjectURL(new Blob([data.buffer], { type: "video/mp4" })));
+  };
+
   return (
     <div className={styles.App}>
       <Dropzone noClick={true} clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
@@ -79,6 +95,7 @@ function App() {
       </div>
       <Footer></Footer>
       <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageString={errorMessageString}></ErrorMessage>
+      <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button>
     </div>
   );
 }
