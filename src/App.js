@@ -74,7 +74,7 @@ function App() {
   }, [errorMessageArray]);
 
   const removeAudioChannel = async (e) => {
-    console.log("click");
+    console.log("click2");
     await ffmpeg.load();
     // this works on command line:   ffmpeg -i "audio.mp4" -c copy -an "noaudio.mp4"
     // ffmpeg.FS("writeFile", "noAudio.mp4", await fetchFile(droppedFile.payload));
