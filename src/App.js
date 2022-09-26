@@ -96,7 +96,7 @@ function App() {
       </div>
       <Footer></Footer>
       <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageString={errorMessageString}></ErrorMessage>
-      <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button>
+      {/* <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button> */}
     </div>
   );
 }
