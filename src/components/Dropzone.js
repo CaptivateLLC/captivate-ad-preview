@@ -5,20 +5,6 @@ import { getInfo } from "react-mediainfo";
 
 const maxFileSize = 20000000;
 
-const baseStyle = {
-  outline: "white dashed 2px",
-};
-
-const acceptStyle = {
-  boxShadow: "0px 0px 8px 1px #00e676",
-};
-
-const rejectStyle = {
-  boxShadow: "0px 0px 8px 1px #ff1744",
-};
-
-// file cannot include audio channel!
-
 function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneErrors, noClick }) {
   const [files, setFiles] = useState([]);
 
@@ -49,11 +35,6 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
       );
       const newFile = acceptedFiles[0];
 
-      // errors:
-      // audio
-      // file size
-      // file dimensions
-
       const newInfo = getInfo(newFile).then((result) => {
         const ac = result.media.track[0].AudioCount;
         const acNumber = parseInt(ac);
@@ -65,6 +46,8 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
 
         const fileSize = result.media.track[0].FileSize;
         const duration = result.media.track[0].Duration;
+
+        // reject if video is not 16:9.  Warn if audio channel or > 20MB
 
         // 16:9 ratio required, file not loaded | file size should not exceed 20mb, currently: 42mb | file cannot include audio channel!
 
@@ -88,15 +71,6 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
       });
     },
   });
-
-  const style = useMemo(
-    () => ({
-      ...baseStyle,
-      ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {}),
-    }),
-    [isDragAccept, isDragReject]
-  );
 
   return (
     <section className={styles.container}>
