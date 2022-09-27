@@ -28,9 +28,9 @@ function App() {
   const [errorMessageString, setErrorMessageString] = useState();
   const [errorTextAnimationRun, setErrorTextAnimationRun] = useState(false);
 
-  const ffmpeg = createFFmpeg({
-    log: true,
-  });
+  // const ffmpeg = createFFmpeg({
+  //   log: true,
+  // });
   // const load = async () => {
   //   await ffmpeg.load();
   // };
@@ -107,7 +107,7 @@ function App() {
       </div>
       <Footer></Footer>
       <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageString={errorMessageString}></ErrorMessage>
-      <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button>
+      {/* <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button> */}
     </div>
   );
 }
