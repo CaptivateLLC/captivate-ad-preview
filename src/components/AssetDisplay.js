@@ -53,8 +53,9 @@ function AssetDisplay({ droppedFile, width, label, clearDropzoneErrors, handleDr
   }, [droppedFile.payload]);
   return (
     <div className={`${styles.relative} ${styles.bottomMargin}`}>
+      <img className={styles.imageStyle} src={bgImage}></img>
       <Dropzone noClick={false} clearDropzoneErrors={clearDropzoneErrors} handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges}></Dropzone>
-      {/* `${this.state.className} ${this.props.content.divClassName}}` */}
+
       <div className={styles.labelText}>{label}</div>
       <div ref={ref} style={dropzoneAssetParent} className={styles.dropContainer}></div>
     </div>

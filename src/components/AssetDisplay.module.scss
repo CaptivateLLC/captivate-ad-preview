@@ -21,8 +21,20 @@
   position: relative;
   pointer-events: auto;
   cursor: pointer;
+  transition-duration: 0.5s;
+  transition-property: background-color;
+}
+.relative:hover {
+  //   border: 1px red solid;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .bottomMargin {
   margin-bottom: 60px;
+}
+
+.imageStyle {
+  position: absolute;
+  left: 46%;
+  top: 43%;
 }
