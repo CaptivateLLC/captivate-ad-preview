@@ -77,10 +77,10 @@ function App() {
     console.log("click3");
     await ffmpeg.load();
     // this works on command line:   ffmpeg -i "audio.mp4" -c copy -an "noaudio.mp4"
-    // ffmpeg.FS("writeFile", "noAudio.mp4", await fetchFile(droppedFile.payload));
-    // await ffmpeg.run("-framerate", "1/10", "-i", "noAudio.mp4", "-c:v", "libx264", "-t", "10", "-pix_fmt", "yuv420p", "-vf", "scale=1920:1080", "test.mp4");
-    // const data = ffmpeg.FS("readFile", "test.mp4");
-    //setVideoSrc(URL.createObjectURL(new Blob([data.buffer], { type: "video/mp4" })));
+    ffmpeg.FS("writeFile", "noAudio.mp4", await fetchFile(droppedFile.payload));
+    await ffmpeg.run("-framerate", "1/10", "-i", "noAudio.mp4", "-c:v", "libx264", "-t", "10", "-pix_fmt", "yuv420p", "-vf", "scale=1920:1080", "test.mp4");
+    const data = ffmpeg.FS("readFile", "test.mp4");
+    setVideoSrc(URL.createObjectURL(new Blob([data.buffer], { type: "video/mp4" })));
   };
 
   return (
@@ -96,7 +96,7 @@ function App() {
       </div>
       <Footer></Footer>
       <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageString={errorMessageString}></ErrorMessage>
-      {/* <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button> */}
+      <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button>
     </div>
   );
 }
