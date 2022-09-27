@@ -68,12 +68,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
 
         // 16:9 ratio required, file not loaded | file size should not exceed 20mb, currently: 42mb | file cannot include audio channel!
 
-        // get aspect ratio
-        console.log("acNumber = ", typeof acNumber);
-        console.log("acNumber = ", acNumber);
-
-        console.log("ac = ", typeof ac);
-        console.log("ac = ", ac);
+        // acNumber will always be of type Number and value either an integer or NaN
         if (acNumber > 0) {
           handleDropzoneErrors("file should not include audio channel");
         }
@@ -91,9 +86,6 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
           handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}`);
         }
       });
-
-      //const nameArray = newFile.name.split(".");
-      //const ext = nameArray[1];
     },
   });
 
