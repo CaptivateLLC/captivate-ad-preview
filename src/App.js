@@ -87,7 +87,8 @@ function App() {
     const data = ffmpeg.FS("readFile", "noaudio.mp4");
     console.log("finished2");
     //setDroppedFile(URL.createObjectURL(new Blob([data.buffer], { type: "video/mp4" })));
-    handleDropzoneChanges("payload", data);
+    //handleDropzoneChanges("payload", data);
+    saveAs(data, `noaudio.mp4`);
   };
 
   return (
