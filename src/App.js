@@ -82,7 +82,7 @@ function App() {
     ffmpeg.FS("writeFile", "audio.mp4", await fetchFile(droppedFile.payload));
 
     //await ffmpeg.run("-framerate", "1/10", "-i", "noAudio.mp4", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-vf", "scale=1920:1080", "test.mp4");
-    await ffmpeg.run("-i" "audio.mp4" "-c" "copy" "-an" "noaudio.mp4");
+    await ffmpeg.run("-i", "audio.mp4", "-c", "copy", "-an", "noaudio.mp4");
     console.log("finished1");
     const data = ffmpeg.FS("readFile", "noaudio.mp4");
     console.log("finished2");
