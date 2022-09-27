@@ -11,7 +11,7 @@ function Header() {
       <div className={`${styles.relativeCenterBody} ${styles.headerContainer}`}>
         <div className={styles.innerTextContainer}>
           <div className={styles.text}>
-            <img src={blueCheck} className={styles.blueCheck}></img>For best results, stand a few feet away from your screen
+            <img src={blueCheck} className={styles.blueCheck}></img>For best results, stand 3 to 5 feet away from your screen
           </div>
           <div className={styles.text}>
             <img src={blueCheck} className={styles.blueCheck}></img>All elements, especially text and QR codes, should be legible in both formats

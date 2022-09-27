@@ -78,9 +78,11 @@ function App() {
     await ffmpeg.load();
     // // this works on command line:   ffmpeg -i "audio.mp4" -c copy -an "noaudio.mp4"
     // grab the file (end of the command) and name it noAudio.mp4
-    ffmpeg.FS("writeFile", "noAudio.mp4", await fetchFile(droppedFile.payload));
+    //ffmpeg.FS("writeFile", "noAudio.mp4", await fetchFile(droppedFile.payload));
+    ffmpeg.FS("writeFile", "image.png", await fetchFile(droppedFile.payload));
 
-    await ffmpeg.run("-framerate", "1/10", "-i", "noAudio.mp4", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-vf", "scale=1920:1080", "test.mp4");
+    //await ffmpeg.run("-framerate", "1/10", "-i", "noAudio.mp4", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-vf", "scale=1920:1080", "test.mp4");
+    await ffmpeg.run("-framerate", "1/10", "-i", "image.png", "-c:v", "libx264", "-t", "10", "-pix_fmt", "yuv420p", "-vf", "scale=1920:1080", "test.mp4");
     console.log("finished1");
     const data = ffmpeg.FS("readFile", "test.mp4");
     console.log("finished2");
