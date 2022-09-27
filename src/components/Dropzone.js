@@ -75,7 +75,7 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
         if (fixedAspectRatio !== "1.78") {
           handleDropzoneErrors("16:9 ratio required");
         } else {
-          handleDropzoneChanges("payload", newFile);
+          //handleDropzoneChanges("payload", newFile);
         }
         if (fileSize > maxFileSize) {
           console.log("file size test error");
