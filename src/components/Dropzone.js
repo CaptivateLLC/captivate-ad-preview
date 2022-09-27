@@ -49,60 +49,51 @@ function Dropzone({ handleDropzoneChanges, handleDropzoneErrors, clearDropzoneEr
       );
       const newFile = acceptedFiles[0];
 
+      // errors:
+      // audio
+      // file size
+      // file dimensions
+
       const newInfo = getInfo(newFile).then((result) => {
         const ac = result.media.track[0].AudioCount;
+        const acNumber = parseInt(ac);
+        const width = result.media.track[1].Width;
+        const height = result.media.track[1].Height;
+        const aspectRatio = width / height; // 1.778
+        const fixedAspectRatio = aspectRatio.toFixed(2);
+        const frameRate = result.media.track[1].FrameRate;
+
+        const fileSize = result.media.track[0].FileSize;
+        const duration = result.media.track[0].Duration;
+
+        // 16:9 ratio required, file not loaded | file size should not exceed 20mb, currently: 42mb | file cannot include audio channel!
+
+        // get aspect ratio
+        console.log("acNumber = ", typeof acNumber);
+        console.log("acNumber = ", acNumber);
+
+        console.log("ac = ", typeof ac);
         console.log("ac = ", ac);
-        if (ac === "1") {
+        if (acNumber > 0) {
           handleDropzoneErrors("file should not include audio channel");
+        }
+        if (fixedAspectRatio !== "1.78") {
+          handleDropzoneErrors("16:9 ratio required");
+        } else {
+          handleDropzoneChanges("payload", newFile);
+        }
+        if (fileSize > maxFileSize) {
+          console.log("file size test error");
+          let divisor = newFile.size > 1000000000 ? 1000000000 : 1000000;
+          let suffix = newFile.size > 1000000000 ? "gb" : "mb";
+
+          const fixedSize = Math.round(newFile.size / divisor);
+          handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}`);
         }
       });
 
-      if (newFile.size > maxFileSize) {
-        console.log("file size test error");
-        let divisor = newFile.size > 1000000000 ? 1000000000 : 1000000;
-        let suffix = newFile.size > 1000000000 ? "gb" : "mb";
-
-        const fixedSize = Math.round(newFile.size / divisor);
-        handleDropzoneErrors(`file size should not exceed 20mb, currently: ${fixedSize}${suffix}`);
-      }
-      const nameArray = newFile.name.split(".");
-      const ext = nameArray[1];
-
-      if (ext !== "mp4") {
-        const i = new Image();
-        i.onload = () => {
-          let reader = new FileReader();
-          reader.readAsDataURL(newFile);
-          reader.onload = () => {
-            const ratio = i.width / i.height;
-            const fixedRatio = ratio.toFixed(2);
-
-            if (fixedRatio === "1.78") {
-              console.log("correct aspect ratio");
-              handleDropzoneChanges("payload", newFile);
-            } else {
-              handleDropzoneErrors("16:9 ratio required");
-            }
-          };
-        };
-
-        i.src = newFile.preview;
-      } else {
-        // need to interrogate video for its secrets
-        const video = document.createElement("video");
-        video.addEventListener("canplay", (event) => {
-          //console.log("width = ", video.width);
-          const ratio = video.videoWidth / video.videoHeight;
-          const fixedRatio = ratio.toFixed(2);
-
-          if (fixedRatio === "1.78") {
-            handleDropzoneChanges("payload", newFile);
-          } else {
-            handleDropzoneErrors("16:9 ratio required");
-          }
-        });
-        video.src = URL.createObjectURL(newFile);
-      }
+      //const nameArray = newFile.name.split(".");
+      //const ext = nameArray[1];
     },
   });
 

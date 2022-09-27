@@ -7,6 +7,18 @@
 
 // git remote set-url origin git@github.com:CaptivateLLC/captivate-ad-preview.git
 
+/*
+required custom header for Amplify
+customHeaders:
+  - pattern: '*.*'
+    headers:
+      - key: Cross-Origin-Embedder-Policy
+        value: require-corp
+      - key: Cross-Origin-Opener-Policy
+        value: same-origin
+
+*/
+
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import styles from "./App.module.scss";
 import Header from "./components/Header";
