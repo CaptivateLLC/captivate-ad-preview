@@ -7,7 +7,7 @@ function Header() {
   return (
     <div className={styles.relativeCenterBody}>
       <img className={styles.logoStyle} src={logo} />
-      <div className={styles.headerTextStyle}>Standard Ad Preview v396.932</div>
+      <div className={styles.headerTextStyle}>Standard Ad Preview v396.94</div>
       <div className={`${styles.relativeCenterBody} ${styles.headerContainer}`}>
         <div className={styles.innerTextContainer}>
           <div className={styles.text}>
