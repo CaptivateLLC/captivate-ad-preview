@@ -17,6 +17,7 @@ import BackgroundImages from "./components/BackgroundImages";
 import ErrorMessage from "./components/ErrorMessage";
 import Footer from "./components/Footer";
 import separator from "./assets/separator.svg";
+import { saveAs } from "file-saver";
 
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
@@ -88,7 +89,7 @@ function App() {
     console.log("finished2");
     //setDroppedFile(URL.createObjectURL(new Blob([data.buffer], { type: "video/mp4" })));
     //handleDropzoneChanges("payload", data);
-    saveAs(data, `noaudio.mp4`);
+    saveAs(data, "noaudio.mp4");
   };
 
   return (
