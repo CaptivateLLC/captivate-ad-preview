@@ -6,6 +6,7 @@ import Dropzone from "../components/Dropzone";
 function AssetDisplay({ droppedFile, width, label, clearDropzoneErrors, handleDropzoneErrors, handleDropzoneChanges }) {
   const height = (9 * width) / 16;
   const ref = useRef(null);
+  let firstRun = true;
 
   const container = {
     position: "relative",

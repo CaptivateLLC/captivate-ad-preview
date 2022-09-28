@@ -22,8 +22,9 @@ import separator from "./assets/separator.svg";
 //import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 function App() {
-  const [videoSrc, setVideoSrc] = useState("");
+  // const [videoSrc, setVideoSrc] = useState("");
   const [droppedFile, setDroppedFile] = useState({});
+
   const [errorMessageArray, setErrorMessageArray] = useState([]);
   const [errorMessageString, setErrorMessageString] = useState();
   const [errorTextAnimationRun, setErrorTextAnimationRun] = useState(false);
