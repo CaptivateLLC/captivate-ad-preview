@@ -21,36 +21,29 @@ function AssetDisplay({ droppedFile, width, label, clearDropzoneErrors, handleDr
 
   useEffect(() => {
     if (Object.keys(droppedFile).length > 0 && droppedFile.payload !== null) {
-      // if this is a video, create a video tag
+      const el = ref.current;
+      let elemNew;
       if (droppedFile.payload.type.includes("video")) {
-        const el = ref.current;
-        const elemV = document.createElement("video");
-        elemV.style = "position: absolute; width: 100%; height: 100%; left: 0px; object-fit: contain";
-
-        elemV.autoplay = true;
-        elemV.loop = true;
-        elemV.src = URL.createObjectURL(droppedFile.payload);
+        elemNew = document.createElement("video");
+        elemNew.autoplay = true;
+        elemNew.loop = true;
+        elemNew.src = URL.createObjectURL(droppedFile.payload);
         const options = { childList: true };
-        while (el.firstChild) {
-          el.removeChild(el.lastChild);
-        }
-        setTimeout(() => {
-          el.appendChild(elemV);
-        }, 100);
       } else {
-        const elemI = document.createElement("img");
-        elemI.style = "position: absolute; width: 100%; height: 100%; left: 0px; object-fit: contain";
-        elemI.setAttribute("src", URL.createObjectURL(droppedFile.payload));
-        const el = ref.current;
-        while (el.firstChild) {
-          el.removeChild(el.lastChild);
-        }
-        setTimeout(() => {
-          el.appendChild(elemI);
-        }, 100);
+        elemNew = document.createElement("img");
+        elemNew.setAttribute("src", URL.createObjectURL(droppedFile.payload));
       }
+      elemNew.style = "position: absolute; width: 100%; height: 100%; left: 0px; object-fit: contain";
+
+      while (el.firstChild) {
+        el.removeChild(el.lastChild);
+      }
+      setTimeout(() => {
+        el.appendChild(elemNew);
+      }, 100);
     }
   }, [droppedFile.payload]);
+
   return (
     <div className={`${styles.relative} ${styles.bottomMargin}`}>
       <img className={styles.imageStyle} src={bgImage}></img>
