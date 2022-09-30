@@ -2,7 +2,6 @@
 
 .dropContainer {
   background-image: $dropZoneBackground;
-  //   background-image: url(../assets/dropzoneBGImage.png);
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -30,11 +29,15 @@
 }
 
 .bottomMargin {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+  @include breakpoint(md) {
+    margin-bottom: 23px;
+  }
 }
 
 .imageStyle {
   position: absolute;
   left: 46%;
   top: 43%;
+  z-index: 100;
 }

@@ -17,7 +17,7 @@ function AssetDisplay({ droppedFile, width, label, clearDropzoneErrors, handleDr
     height: `${height}px`,
     overflow: "hidden",
     position: "relative",
-    border: "1px black solid",
+    // border: "1px black solid",
   };
 
   useEffect(() => {

@@ -14,7 +14,7 @@
 .separator {
   display: none;
   position: relative;
-  top: -23px;
+  top: -8px;
   @include breakpoint(md) {
     display: block;
   }
@@ -30,7 +30,8 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: 66px;
+
   @include breakpoint(md) {
     flex-direction: row;
   }

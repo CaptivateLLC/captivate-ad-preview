@@ -29,6 +29,10 @@ $dropZoneBackground: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0
   font-family: "Avenir-Heavy";
   src: local("AvenirNext-Heavy"), url("./assets/fonts/AvenirNext-Heavy-09.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Avenir-MediumItalic";
+  src: local("AvenirNext-MediumItalic"), url("./assets/fonts/AvenirNext-MediumItalic-07.ttf") format("truetype");
+}
 
 .relativeCenterBody {
   position: relative;

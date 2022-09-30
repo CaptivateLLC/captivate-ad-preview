@@ -106,7 +106,7 @@ function App() {
         <img className={styles.separator} src={separator}></img>
         <AssetDisplay handleDropzoneErrors={handleDropzoneErrors} handleDropzoneChanges={handleDropzoneChanges} clearDropzoneErrors={clearDropzoneErrors} label="Large Format Display (768x432)" droppedFile={droppedFile} width={768}></AssetDisplay>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
       <ErrorMessage errorTextAnimationRun={errorTextAnimationRun} droppedFile={droppedFile} errorMessageString={errorMessageString}></ErrorMessage>
       {/* <button className={styles.audioChannelButton} onClick={removeAudioChannel}></button> */}
     </div>
