@@ -7,7 +7,7 @@ function Header() {
   return (
     <div className={styles.relativeCenterBody}>
       <img className={styles.logoStyle} src={logo} />
-      <div className={styles.headerTextStyle}>Standard Ad Preview v5.2</div>
+      <div className={styles.headerTextStyle}>Standard Ad Preview v5.4</div>
       <div className={`${styles.relativeCenterBody} ${styles.headerContainer}`}>
         <div className={styles.innerTextContainer}>
           <div className={styles.text22}>Drag and drop 16:9 creative anywhere or click a preview window to browse</div>
